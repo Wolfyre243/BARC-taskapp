@@ -1,17 +1,26 @@
-// Import necessary components
+// This is the nav button component. It appears on the navbar for easier navigation.
+/* 
+There are 2 parameters; text and source. While self-explanatory, the source has to be
+a relative path, tracing from the /public directory.
+*/
 
-// Import icons
-import { HomeIcon } from '@heroicons/react/24/outline';
-// TODO: Add more icons as needed, and create a map to allow easier customisation.
+// Import components
+import Image from 'next/image';
 
 export default function NavButton({ 
-    text
+    text, source
 } : {
-    text: string; // Perform typing here
+    text: string; source: string; // Perform typing here
 }) {
     return(
         <button className="px-4 py-1 flex flex-row gap-2 items-center bg-transparent">
-            <HomeIcon className='size-5'/>
+            <Image
+                src={source}
+                alt={'NavButton Icon'}
+                width={20}
+                height={20}
+                className='invert'
+            />
             <p className='align-middle h-fit text-sm'> { text } </p>
         </button>
     )
