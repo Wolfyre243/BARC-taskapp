@@ -8,20 +8,21 @@ a relative path, tracing from the /public directory.
 import Image from 'next/image';
 
 export default function NavButton({ 
-    text, source
+    source, width, height
 } : {
-    text: string; source: string; // Perform typing here
-}) {
+    source: string;
+    width: number;
+    height: number; // Perform typing here
+}) { // TODO: Consider changing this to an anchor element
     return(
-        <button className="px-4 py-1 flex flex-row gap-2 items-center bg-transparent">
+        <button className="px-4 py-1 bg-transparent">
             <Image
                 src={source}
                 alt={'NavButton Icon'}
-                width={20}
-                height={20}
+                width={width}
+                height={height}
                 className='invert'
             />
-            <p className='align-middle h-fit text-sm'> { text } </p>
         </button>
     )
 }
