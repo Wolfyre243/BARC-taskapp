@@ -8,14 +8,29 @@
 import { sulphurPoint } from "../ui/fonts";
 
 import TaskCard from "@/app/ui/dashboard/taskcard";
+import { TaskCount_Widget } from "../ui/dashboard/widgets";
+import { Quote_Widget } from "../ui/dashboard/widgets";
 
 export default async function Page() {
     return (
         <main className="flex flex-col items-center h-full w-full gap-y-5 px-12 py-6">
-            <div className="flex flex-row w-full h-fit">
-                <h1 className={`text-6xl tracking-tighter ${sulphurPoint.className}`}>
-                    {`Good Morning, Wolfyre.`}
-                </h1>
+            <div className="flex flex-col w-full h-fit gap-y-5">
+                <div className="flex flex-row w-full h-fit justify-between">
+                    <h1 className={`text-6xl tracking-tighter ${sulphurPoint.className}`}>
+                        {`Good Morning, Wolfyre.`}
+                    </h1>
+                    <div>
+                        a few quick action buttons here
+                    </div>
+                </div>
+                
+                <div className="flex flex-row w-full h-fit gap-x-5 justify-evenly">
+                    <TaskCount_Widget />
+                    <Quote_Widget />
+                    <TaskCount_Widget />
+                    <TaskCount_Widget />
+                    <TaskCount_Widget />
+                </div>
             </div>
 
             <div className="flex flex-row justify-between w-full h-full gap-x-5">
