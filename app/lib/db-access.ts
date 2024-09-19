@@ -19,7 +19,7 @@ export const pool = new Pool({
 
 // MARK: Add Event Listeners
 
-pool.on('release', ({ err } : { err: any }) => {
+pool.on('release', ( err: any ) => {
     if (!err) {
         console.log('Client released');
     } else {
@@ -33,9 +33,7 @@ pool.on('connect', () => {
 
 // MARK: Set Up Database Access Functions
 
-export const query = async (
-    text: string, params?: any
-) => {
+export const query = async ( text: string, params?: any ) => {
     const startTime = Date.now();
     let result;
     try {
@@ -60,7 +58,7 @@ export const getClient = async () => {
     }, 5000);
 
     // Monkey Patching (I have yet to figure out what this does exactly.)
-    client.query = ({ ...args }) => {
+    client.query = (...args: any) => {
         client.lastQuery = args;
         return query.apply(client, args); // Applies the 'query' function to 'client'.
     }

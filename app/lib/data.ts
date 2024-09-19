@@ -7,15 +7,26 @@ import { query } from './db-access' // Use this for querying
 import { getClient } from './db-access' // For when a transaction is needed
 
 // MARK: Fetching Tasks
-export async function fetchTasks() {
+export async function fetchTasks(
+    type: "all" | "completed" | "incomplete"
+) {
     try {
-        const taskdata = await query(
-            `SELECT * FROM tasks`
-        )
-        return taskdata.rows; // returns an array of task objects.
+        if (type === "all") {
+            const taskdata = await query(
+                `SELECT * FROM tasks`
+            )
+            return taskdata.rows; // returns an array of task objects.
+        } else {
+            const taskdata = await query(
+                `SELECT * FROM tasks 
+                WHERE completed = ${type === "completed" ? "true" : "false"}`
+            )
+            return taskdata.rows; // returns an array of task objects.
+        }
+        
+        
     } catch (err) {
         console.error(err);
-        throw new Error('Failed to fetch revenue data.');
     }
 }
 

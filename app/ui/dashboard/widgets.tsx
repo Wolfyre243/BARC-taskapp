@@ -14,7 +14,7 @@ import { fetchTasks } from "@/app/lib/data";
 // TODO: Add more options here, to pick whether to display weekly tasks completed or monthly, etc.
 export async function TaskCount_Widget() {
     // TODO: Add actuall functionality here to fetch task data from database
-    const taskData = await fetchTasks();
+    const taskData = await fetchTasks("completed");
 
     return (
         <div className="flex flex-col w-full p-5 bg-blue-400 text-black rounded-xl">
@@ -32,7 +32,7 @@ export async function TaskCount_Widget() {
             <p>This {"week"}:</p>
             
             <Suspense fallback={<p className="text-4xl">Loading...</p>}>
-                <h2 className="text-4xl">{taskData.length}</h2>
+                <h2 className="text-4xl">{taskData ? taskData.length : "..."}</h2>
             </Suspense>
 
         </div>
