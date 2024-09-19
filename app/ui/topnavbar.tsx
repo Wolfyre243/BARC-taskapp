@@ -8,17 +8,17 @@ export default function TopNavBar() {
             <BrandLogo />
             <div className="flex flex-row gap-x-3">
                 <NavButton
-                    source={'/icons/home-icon-minimal.png'}
+                    source={'/icons/home-icon.svg'}
                     width={20}
                     height={20}
                 />
                 <NavButton
-                    source={'/icons/home-icon-minimal.png'}
+                    source={'/icons/home-icon.svg'}
                     width={20}
                     height={20}
                 />
                 <NavButton
-                    source={'/icons/home-icon-minimal.png'}
+                    source={'/icons/home-icon.svg'}
                     width={20}
                     height={20}
                 />

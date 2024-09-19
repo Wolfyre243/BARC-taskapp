@@ -41,7 +41,6 @@ export default async function Page() {
                         <h1 className="text-2xl">Outstanding Tasks</h1>
                         <button className="mr-1 text-3xl rounded-full">+</button>
                     </div>
-
                     {/* TODO: Maybe turn this tasklist div into its own component so it can be reused */}
                     <div className="flex flex-col gap-y-4">
                         <TaskCard text={"Task 1"} />
