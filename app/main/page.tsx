@@ -8,10 +8,22 @@
 import { sulphurPoint } from "../ui/fonts";
 
 import TaskCard from "@/app/ui/dashboard/taskcard";
+import { Card_Container } from "../ui/dashboard/cardContainer";
 import { TaskCount_Widget } from "../ui/dashboard/widgets";
 import { Quote_Widget } from "../ui/dashboard/widgets";
 
+import { Suspense } from "react";
+
+// Import Skeletons
+import { Widget_Skeleton } from "../ui/skeletons";
+
+// Import Database Access functions
+import { fetchTasks } from "@/app/lib/data";
+
 export default async function Page() {
+
+    const taskData = await fetchTasks("completed");
+
     return (
         <main className="flex flex-col items-center h-full w-full gap-y-5 px-12 py-6">
             <div className="flex flex-col w-full h-fit gap-y-5">
@@ -25,30 +37,27 @@ export default async function Page() {
                 </div>
                 
                 <div className="flex flex-row w-full h-fit gap-x-5 justify-evenly">
-                    <TaskCount_Widget />
-                    <Quote_Widget />
-                    <TaskCount_Widget />
-                    <TaskCount_Widget />
-                    <TaskCount_Widget />
+                    <Suspense fallback={<Widget_Skeleton />}>
+                        <TaskCount_Widget />
+                    </Suspense>
+                    <Suspense fallback={<Widget_Skeleton />}>
+                        <Quote_Widget />
+                    </Suspense>
+                    <Suspense fallback={<Widget_Skeleton />}>
+                        <TaskCount_Widget />
+                    </Suspense>
+                    <Suspense fallback={<Widget_Skeleton />}>
+                        <TaskCount_Widget />
+                    </Suspense>
+                    <Suspense fallback={<Widget_Skeleton />}>
+                        <TaskCount_Widget />
+                    </Suspense>
+                    
                 </div>
             </div>
 
             <div className="flex flex-row justify-between w-full h-full gap-x-5">
-                <div id="tasklistSide" className="h-full w-full px-6 py-4 rounded-3xl bg-grey-light">
-                    
-                    {/* TODO: Add functionality to the add task button */}
-                    <div id="tasklistHeader" className="w-full flex flex-row justify-between mb-5">
-                        <h1 className="text-2xl">Outstanding Tasks</h1>
-                        <button className="mr-1 text-3xl rounded-full">+</button>
-                    </div>
-                    {/* TODO: Maybe turn this tasklist div into its own component so it can be reused */}
-                    <div className="flex flex-col gap-y-4">
-                        <TaskCard text={"Task 1"} />
-                        <TaskCard text={"Task 2"} />
-                        <TaskCard text={"Task 3"} />
-                        <TaskCard text={"Task 4"} />
-                    </div>
-                </div>
+                <Card_Container />
 
                 <div id="summarySide" className="h-full w-fit flex flex-col justify-evenly gap-y-10">
                     <div id="widgetsContainer" className="h-full flex flex-col justify-center items-center rounded-3xl bg-grey-light">

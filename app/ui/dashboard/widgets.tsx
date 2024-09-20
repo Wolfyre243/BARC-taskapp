@@ -12,7 +12,7 @@ import { fetchTasks } from "@/app/lib/data";
 // MARK: Task Count Widget
 
 // TODO: Add more options here, to pick whether to display weekly tasks completed or monthly, etc.
-export async function TaskCount_Widget() {
+export async function TaskCount_Widget({}) {
     // TODO: Add actuall functionality here to fetch task data from database
     const taskData = await fetchTasks("completed");
 
@@ -31,10 +31,8 @@ export async function TaskCount_Widget() {
 
             <p>This {"week"}:</p>
             
-            <Suspense fallback={<p className="text-4xl">Loading...</p>}>
-                <h2 className="text-4xl">{taskData ? taskData.length : "..."}</h2>
-            </Suspense>
-
+            <h2 className="text-4xl">{taskData ? taskData.length : "..."}</h2>
+            
         </div>
     );
 }
@@ -59,5 +57,4 @@ export function Quote_Widget() {
             
         </div>
     )
-    
 }
